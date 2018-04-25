@@ -42,7 +42,7 @@ public class RelishTeleOp extends OpMode {
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
 
-        setMotorPower(left, right);
+        setMotorPower(left * 0.75, right * 0.75);
 
         if (gamepad1.dpad_up) {
 
