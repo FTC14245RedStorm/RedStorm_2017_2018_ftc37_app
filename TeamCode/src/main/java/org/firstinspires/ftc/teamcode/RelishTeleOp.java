@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 /**
@@ -15,15 +16,18 @@ import com.qualcomm.robotcore.util.Range;
 
 public class RelishTeleOp extends OpMode {
 
-    DcMotor motorLeft, motorRight;
+    DcMotor motorLeft, motorRight, motorLift;
+    Servo servoGripper;
 
     @Override
     public void init() {
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         motorRight = hardwareMap.dcMotor.get("motorRight");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
+        servoGripper = hardwareMap.servo.get("servoGripper");
 
-        motorLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorRight.setDirection(DcMotor.Direction.REVERSE);
     }
 
     @Override
@@ -39,6 +43,33 @@ public class RelishTeleOp extends OpMode {
         right = (float) scaleInput(right);
 
         setMotorPower(left, right);
+
+        if (gamepad1.dpad_up) {
+
+            motorLift.setPower(1.0);
+        }
+        else {
+
+            motorLift.setPower(0);
+        }
+
+        if (gamepad1.dpad_down) {
+
+            motorLift.setPower(-1.0);
+        }
+        else {
+
+            motorLift.setPower(0);
+        }
+
+        if (gamepad1.dpad_right) {
+
+            servoGripper.setPosition(1);
+        }
+        else if (gamepad1.dpad_left) {
+
+            servoGripper.setPosition(0);
+        }
     }
 
     public void setMotorPower(double left, double right) {

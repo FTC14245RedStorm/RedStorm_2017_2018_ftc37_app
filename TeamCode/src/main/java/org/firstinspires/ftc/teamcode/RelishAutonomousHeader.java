@@ -1,49 +1,31 @@
-package org.firstinspires.ftc.teamcode; // These lines import necessary software for this program.
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
- * Created by Nick Urbin on 4/4/2018.
+ * Created by Fiona Beer on 4/23/2018.
  */
 
-public abstract class RelishAutonomousHeader extends LinearOpMode { // This line establishes this
-    // program as a public abstract class that extends the header file "LinearOpMode". This makes
-    // it a header file in itself that the real autonomous op modes will extend. It is considered
-    // abstract because it simply contains the framework for the autonomous op modes (creating void
-    // methods and such) and does not yet translate to actual movement on the robot.
+public abstract class RelishAutonomousHeader extends LinearOpMode {
 
-    DcMotor motorLeft, motorRight; // This line establishes the names of the motors we will be
-    // using.
+    DcMotor motorLeft, motorRight, motorLift;
+    Servo servoGripper;
 
-    public void initialize() { // This public void will go at the start of each autonomous op mode
-        // and will serve as the initialization routine the robot undergoes.
+    public void initialize() {
 
-        motorLeft = hardwareMap.dcMotor.get("motorLeft");   // These lines establish a link between
-        motorRight = hardwareMap.dcMotor.get("motorRight"); // the code and the hardware for the
-        // motors. The names in quotations are
-        // the names of the motors we set on
-        // the phone.
+        motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        motorRight = hardwareMap.dcMotor.get("motorRight");
+        motorLift = hardwareMap.dcMotor.get("motorLift");
+        servoGripper = hardwareMap.servo.get("servoGripper");
 
-        motorLeft.setDirection(DcMotor.Direction.REVERSE); // This line reverses the left motor
-        // in order to negate the fact that the
-        // motors are placed on the robot to
-        // mirror each other.
+        motorLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
-    public void move(double left, double right) { // This public void is called in the autonomous
-        // op modes whenever the motors on the robot need
-        // to be turned on. It has two parameters: the
-        // speed of the left motor and the speed of the
-        // right motor. These can be changed with each
-        // implementation of the public void. Whatever is
-        // inputted into each parameter is then
-        // substituted into its corresponding spots in
-        // the public void.
+    public void move(double left, double right) {
 
-        motorLeft.setPower(left); // This line sets the power of the left motor to the desired
-        // power.
-        motorRight.setPower(right); // This line sets the power of the right motor to the desired
-        // power.
+        motorLeft.setPower(left);
+        motorRight.setPower(right);
     }
 }

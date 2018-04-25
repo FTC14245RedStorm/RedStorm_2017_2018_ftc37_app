@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 /**
- * Created by Nick Urbin on 4/4/2018.  This is a test
+ * Created by Fiona Beer on 4/25/2018.
  */
 
 @Autonomous
@@ -18,11 +18,6 @@ public class RelishAutonomous extends RelishAutonomousHeader {
         waitForStart();
 
         // Start Code Here
-
-
-
-
-
 
     }
 }
